@@ -287,7 +287,7 @@ public class KlondikeVisual : MonoBehaviour
                     {
                         if (KlondikeLogic.CanPlaceCardInStack(gameData, selectedCardIndex, stackIdx))
                         {
-                            if(m_selectedCard.SrcType == ColumnType.PILE)
+                            if (m_selectedCard.SrcType == ColumnType.PILE)
                             {
                                 KlondikeLogic.MoveCardFromColumnToStack(ref gameData, (byte)selectedCardIndex, m_selectedCardColumn, stackIdx);
                                 replayData.PlayerMoves[replayData.PlayerMoveCount++] = new PlayerMove(MOVE_TYPE.COLUMN_TO_STACK, (byte)selectedCardIndex, (byte)m_selectedCardColumn, (byte)stackIdx, gameData.GameTime);
@@ -295,7 +295,7 @@ public class KlondikeVisual : MonoBehaviour
                                 m_cardPosition[selectedCardIndex] += offset;
                                 cardMoved = true;
                             }
-                            else if(m_selectedCard.SrcType == ColumnType.WASTE)
+                            else if (m_selectedCard.SrcType == ColumnType.WASTE)
                             {
                                 KlondikeLogic.MoveCardFromWasteToStack(ref gameData, (byte)selectedCardIndex, stackIdx);
                                 replayData.PlayerMoves[replayData.PlayerMoveCount++] = new PlayerMove(MOVE_TYPE.WASTE_TO_STACK, (byte)selectedCardIndex, 0, (byte)stackIdx, gameData.GameTime);
@@ -325,10 +325,10 @@ public class KlondikeVisual : MonoBehaviour
                             {
                                 byte selectedIndex = (byte)m_selectedCardsIndices[i];
                                 KlondikeLogic.MoveCardFromColumnToColumn(ref gameData, selectedIndex, m_selectedCardColumn, m_selectedCard.Column);
-                                replayData.PlayerMoves[replayData.PlayerMoveCount++] = new PlayerMove(MOVE_TYPE.COLUMN_TO_COLUMN, selectedIndex, (byte)m_selectedCardColumn, (byte)m_selectedCard.Column, gameData.GameTime);
-                                GameManager.Instance.SaveMove();
                                 m_cardPosition[selectedIndex] += new Vector3(offset.x, offset.y, offset.z + m_cardPosition[selectedIndex].z);
                             }
+                            replayData.PlayerMoves[replayData.PlayerMoveCount++] = new PlayerMove(MOVE_TYPE.COLUMN_TO_COLUMN, (byte)m_selectedCardsIndices[0], (byte)m_selectedCardColumn, (byte)m_selectedCard.Column, gameData.GameTime);
+                            GameManager.Instance.SaveMove();
                         }
                         else if (m_selectedCard.SrcType == ColumnType.PILE && m_selectedCard.DestType == ColumnType.STACK)
                         {
@@ -429,7 +429,7 @@ public class KlondikeVisual : MonoBehaviour
             }
         }
 
-        if(numCards == 1)
+        if (numCards == 1)
         {
             for (int stackIdx = 0; stackIdx < 4; stackIdx++)
             {
@@ -466,7 +466,7 @@ public class KlondikeVisual : MonoBehaviour
 
                 m_cards[index].sprite = gameData.CardPileState[i][j] == CARD_STATE.HIDDEN ? cardPack.Back : cardPack.Cards[index];
 
-                yOffset += gameData.CardPileState[i][j] == CARD_STATE.HIDDEN ? YOFFSET/2.0f : YOFFSET;
+                yOffset += gameData.CardPileState[i][j] == CARD_STATE.HIDDEN ? YOFFSET / 2.0f : YOFFSET;
             }
         }
 
@@ -528,7 +528,7 @@ public class KlondikeVisual : MonoBehaviour
 
         }
 
-        if(m_undoButton.activeSelf != showUndo)
+        if (m_undoButton.activeSelf != showUndo)
             m_undoButton.SetActive(showUndo);
     }
 
@@ -543,7 +543,7 @@ public class KlondikeVisual : MonoBehaviour
 
             if (distance > velocity)
             {
-                Vector3 cardPosition = m_cardPosition[i] +(diff.normalized * velocity);
+                Vector3 cardPosition = m_cardPosition[i] + (diff.normalized * velocity);
                 m_cardPosition[i] = cardPosition;
                 m_cardMoving[i] = 1.0f;
             }

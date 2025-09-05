@@ -256,7 +256,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     void StartGame(ref GameData gameData, int seed, ref ReplayData replayData)
     {
-        //Debug.LogFormat("StartGame seed {0}", seed);
         SetMenuState(MENU_STATE.IN_GAME);
 
         replayData.PlayerMoveCount = 0;

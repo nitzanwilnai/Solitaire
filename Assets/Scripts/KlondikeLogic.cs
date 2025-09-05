@@ -337,9 +337,4 @@ public static class KlondikeLogic
 
         return false;
     }
-
-    public static void UndoMoveCardFromColumnToColumn(ref GameData gameData, byte index, int oldColumn, int newColumn)
-    {
-
-    }
 }
